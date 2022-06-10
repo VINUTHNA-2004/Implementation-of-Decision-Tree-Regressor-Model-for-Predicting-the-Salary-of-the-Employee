@@ -8,22 +8,67 @@ To write a program to implement the Decision Tree Regressor Model for Predicting
 2. Anaconda – Python 3.7 Installation / Moodle-Code Runner
 
 ## Algorithm
-1. 
-2. 
-3. 
-4. 
+1.Import the required libraries.
 
-## Program:
+2.Upload the csv file and read the dataset.
+
+3.Check for any null values using the isnull() function.
+
+4.From sklearn.tree inport DecisionTreeRegressor.
+
+5.Import metrics and calculate the Mean squared error.
+
+6.Apply metrics to the dataset, and predict the output.
+
+### Program:
 ```
-/*
 Program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee.
-Developed by: 
-RegisterNumber:  
-*/
+Developed by: D.R.Vinuthna
+RegisterNumber:  212221230017
+
+```
+```
+import pandas as pd
+data = pd.read_csv("Salary.csv")
+data.head()
+data.info()
+data.isnull().sum()
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+data["Position"] = le.fit_transform(data["Position"])
+data.head()
+x = data[["Position","Level"]]
+y = data["Salary"]
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=2)
+from sklearn.tree import DecisionTreeRegressor
+dt = DecisionTreeRegressor()
+dt.fit(x_train,y_train)
+y_pred = dt.predict(x_test)
+from sklearn import metrics
+mse = metrics.mean_squared_error(y_test,y_pred)
+mse
+r2 = metrics.r2_score(y_test,y_pred)
+r2
+dt.predict([[5,6]])
+
 ```
 
-## Output:
-![Decision Tree Regressor Model for Predicting the Salary of the Employee](sam.png)
+### Output:
+
+### Data Head:
+![output](https://github.com/VINUTHNA-2004/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/blob/main/11.PNG?raw=true)
+### Data Info:
+![output](https://github.com/VINUTHNA-2004/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/blob/main/22.PNG?raw=true)
+### Data Head after applying LabelEncoder:
+![output](https://github.com/VINUTHNA-2004/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/blob/main/33.PNG?raw=true)
+### MSE:
+![output](https://github.com/VINUTHNA-2004/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/blob/main/44.PNG?raw=true)
+### R2:
+![output](https://github.com/VINUTHNA-2004/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/blob/main/55.PNG?raw=true)
+### Data Prediction:
+![output](https://github.com/VINUTHNA-2004/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/blob/main/66.PNG?raw=true)
+
 
 
 ## Result:
